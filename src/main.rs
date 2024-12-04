@@ -16,7 +16,7 @@ struct Args {
 fn main() {
     let args = Args::parse();
     match args.day {
-        1 => day1::run(),
+        1 => day1::run(args.part),
         2 => day2::run(),
         _ => panic!("day {} not implemented", args.day),
     };
