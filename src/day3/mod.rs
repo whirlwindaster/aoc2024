@@ -37,7 +37,7 @@ fn part_two(mut file: File) {
     while let Some((do_mul, rest)) = contents.split_once("don't()") {
         re.captures_iter(&do_mul).for_each(|cap| {
             sum += cap.get(1).unwrap().as_str().parse::<u32>().unwrap()
-            * cap.get(2).unwrap().as_str().parse::<u32>().unwrap();
+                * cap.get(2).unwrap().as_str().parse::<u32>().unwrap();
         });
 
         if let Some((_, continuation)) = rest.split_once("do()") {

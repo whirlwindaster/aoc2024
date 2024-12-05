@@ -1,9 +1,11 @@
 #![feature(binary_heap_into_iter_sorted)]
+#![feature(iter_collect_into)]
 use clap::Parser;
 
 pub mod day1;
 pub mod day2;
 pub mod day3;
+pub mod day4;
 
 #[derive(Parser)]
 struct Args {
@@ -20,6 +22,7 @@ fn main() {
         1 => day1::run(args.part),
         2 => day2::run(args.part),
         3 => day3::run(args.part),
+        4 => day4::run(args.part),
         _ => panic!("day {} not implemented", args.day),
     };
 }
