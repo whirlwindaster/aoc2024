@@ -70,7 +70,6 @@ fn part_two(file: File) {
             let mut current = start;
             while let Some(next) = next_tile(&board, current) {
                 if !visited.insert(next) {
-                    println!("place dat at {row}, {col}");
                     num_positions += 1;
                     break;
                 }
