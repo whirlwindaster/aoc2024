@@ -9,7 +9,7 @@ pub fn run(part: u32) {
 
     match part {
         1 => part_one(file),
-        //2 => part_two(file),
+        2 => part_two(file),
         _ => panic!("part {part} not implemented"),
     };
 }
@@ -49,6 +49,65 @@ fn part_one(file: File) {
                     sum += 1;
                 }
             }
+        }
+    }
+
+    println!("{sum}");
+}
+
+fn part_two(file: File) {
+    let contents = BufReader::new(file)
+        .lines()
+        .map(|l| l.unwrap().chars().collect::<Vec<_>>())
+        .collect::<Vec<_>>();
+
+    let mut sum = 0;
+
+    for (row, line) in contents
+        .iter()
+        .enumerate()
+        .skip(1)
+        .filter(|(r, _)| r + 1 != contents.len())
+    {
+        for (col, _) in line
+            .into_iter()
+            .enumerate()
+            .skip(1)
+            .filter(|(c, ch)| c + 1 != line.len() && **ch == 'A')
+        {
+            let top_left = match contents[row - 1][col - 1] {
+                'M' => 'M',
+                'S' => 'S',
+                _ => continue,
+            };
+
+            let bottom_right = match contents[row + 1][col + 1] {
+                'M' => 'M',
+                'S' => 'S',
+                _ => continue,
+            };
+
+            if top_left == bottom_right {
+                continue;
+            }
+
+            let top_right = match contents[row - 1][col + 1] {
+                'M' => 'M',
+                'S' => 'S',
+                _ => continue,
+            };
+
+            let bottom_left = match contents[row + 1][col - 1] {
+                'M' => 'M',
+                'S' => 'S',
+                _ => continue,
+            };
+
+            if top_right == bottom_left {
+                continue;
+            }
+
+            sum += 1;
         }
     }
 
