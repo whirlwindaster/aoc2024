@@ -1,4 +1,8 @@
-use std::{collections::HashSet, fs::File, io::{BufRead, BufReader}};
+use std::{
+    collections::HashSet,
+    fs::File,
+    io::{BufRead, BufReader},
+};
 
 pub fn run(part: u32) {
     let file = File::open("src/day6/input").unwrap();
@@ -92,8 +96,11 @@ enum Direction {
     Left,
 }
 
-fn next_tile(board: &[Vec<bool>], current: (usize, usize, Direction)) -> Option<(usize, usize, Direction)> {
-    use Direction::{Up, Right, Down, Left};
+fn next_tile(
+    board: &[Vec<bool>],
+    current: (usize, usize, Direction),
+) -> Option<(usize, usize, Direction)> {
+    use Direction::{Down, Left, Right, Up};
     match current.2 {
         Up => {
             if current.0 == 0 {
@@ -103,7 +110,7 @@ fn next_tile(board: &[Vec<bool>], current: (usize, usize, Direction)) -> Option<
             } else {
                 Some((current.0 - 1, current.1, current.2))
             }
-        },
+        }
         Right => {
             if current.1 >= board[current.0].len() - 1 {
                 None
@@ -112,7 +119,7 @@ fn next_tile(board: &[Vec<bool>], current: (usize, usize, Direction)) -> Option<
             } else {
                 Some((current.0, current.1 + 1, current.2))
             }
-        },
+        }
         Down => {
             if current.0 >= board.len() - 1 {
                 None
@@ -121,7 +128,7 @@ fn next_tile(board: &[Vec<bool>], current: (usize, usize, Direction)) -> Option<
             } else {
                 Some((current.0 + 1, current.1, current.2))
             }
-        },
+        }
         Left => {
             if current.1 == 0 {
                 None
@@ -130,6 +137,6 @@ fn next_tile(board: &[Vec<bool>], current: (usize, usize, Direction)) -> Option<
             } else {
                 Some((current.0, current.1 - 1, current.2))
             }
-        },
+        }
     }
 }
