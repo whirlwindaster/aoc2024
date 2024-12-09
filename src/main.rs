@@ -9,6 +9,7 @@ pub mod day5;
 pub mod day6;
 pub mod day7;
 pub mod day8;
+pub mod day9;
 
 #[derive(Parser)]
 struct Args {
@@ -30,6 +31,7 @@ fn main() {
         6 => day6::run(args.part),
         7 => day7::run(args.part),
         8 => day8::run(args.part),
+        9 => day9::run(args.part),
         _ => panic!("day {} not implemented", args.day),
     };
 }

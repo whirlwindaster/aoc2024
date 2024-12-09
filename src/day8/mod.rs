@@ -66,7 +66,6 @@ fn part_two(file: File) {
         max.1 = line.chars().count() - 1;
     }
 
-
     for bucket in buckets.values() {
         for (i, node) in bucket.iter().enumerate() {
             for other in &bucket[(i + 1)..] {
@@ -84,21 +83,24 @@ fn antinode_coords(
     max: (usize, usize),
 ) -> Vec<(usize, usize)> {
     let (x1, x2, y1, y2) = (c1.0 as isize, c2.0 as isize, c1.1 as isize, c2.1 as isize);
-    [(x1 + x1 - x2, y1 + y1 - y2), (x2 + x2 - x1, y2 + y2 - y1)].into_iter().filter_map(|(x, y)| {
-        if x > (max.0 as isize) || y > (max.1 as isize) {
-            None
-        } else {
-            if let Ok(ux) = usize::try_from(x) {
-                if let Ok(uy) = usize::try_from(y) {
-                    Some((ux, uy))
+    [(x1 + x1 - x2, y1 + y1 - y2), (x2 + x2 - x1, y2 + y2 - y1)]
+        .into_iter()
+        .filter_map(|(x, y)| {
+            if x > (max.0 as isize) || y > (max.1 as isize) {
+                None
+            } else {
+                if let Ok(ux) = usize::try_from(x) {
+                    if let Ok(uy) = usize::try_from(y) {
+                        Some((ux, uy))
+                    } else {
+                        None
+                    }
                 } else {
                     None
                 }
-            } else {
-                None
             }
-        }
-    }).collect::<Vec<_>>()
+        })
+        .collect::<Vec<_>>()
 }
 
 fn harmonic_antinode_coords(
