@@ -2,6 +2,7 @@
 use clap::Parser;
 
 pub mod day1;
+pub mod day10;
 pub mod day2;
 pub mod day3;
 pub mod day4;
@@ -32,6 +33,29 @@ fn main() {
         7 => day7::run(args.part),
         8 => day8::run(args.part),
         9 => day9::run(args.part),
+        10 => day10::run(args.part),
         _ => panic!("day {} not implemented", args.day),
     };
+}
+
+pub fn neighbors<T>(of: (usize, usize), matrix: &[Vec<T>]) -> Vec<(usize, usize)> {
+    let mut out: Vec<(usize, usize)> = Vec::with_capacity(2);
+
+    if of.0 < matrix.len() - 1 {
+        out.push((of.0 + 1, of.1));
+    }
+
+    if of.0 > 0 {
+        out.push((of.0 - 1, of.1));
+    }
+
+    if of.1 < matrix[of.1].len() - 1 {
+        out.push((of.0, of.1 + 1));
+    }
+
+    if of.1 > 0 {
+        out.push((of.0, of.1 - 1));
+    }
+
+    out
 }
