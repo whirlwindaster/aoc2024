@@ -1,8 +1,10 @@
+#![feature(linked_list_cursors)]
 #![feature(binary_heap_into_iter_sorted)]
 use clap::Parser;
 
 pub mod day1;
 pub mod day10;
+pub mod day11;
 pub mod day2;
 pub mod day3;
 pub mod day4;
@@ -34,6 +36,7 @@ fn main() {
         8 => day8::run(args.part),
         9 => day9::run(args.part),
         10 => day10::run(args.part),
+        11 => day11::run(args.part),
         _ => panic!("day {} not implemented", args.day),
     };
 }
